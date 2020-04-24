@@ -1,6 +1,6 @@
 package it.polito.tdp.meteo.model;
 
-import java.util.List;
+import java.util.*;
 
 public class Citta {
 	
@@ -13,6 +13,7 @@ public class Citta {
 	
 	public Citta(String nome) {
 		this.nome = nome;
+		this.rilevamenti=new ArrayList<>();
 	}
 	
 	public Citta(String nome, List<Rilevamento> rilevamenti) {
@@ -47,6 +48,16 @@ public class Citta {
 	public void increaseCounter() {
 		this.counter += 1;
 	}
+	
+	public float media()
+	{
+		int somma=0;
+		for(Rilevamento r: rilevamenti)
+		{
+			somma+=r.getUmidita();
+		}
+		return (float)somma/counter;
+	}
 
 	@Override
 	public int hashCode() {
@@ -78,5 +89,10 @@ public class Citta {
 		return nome;
 	}
 	
+	public void addRilevamento(Rilevamento r)
+	{
+		this.getRilevamenti().add(r);
+	}
+
 
 }
